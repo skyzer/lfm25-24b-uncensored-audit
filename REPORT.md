@@ -8,7 +8,7 @@
 **No evidence of a backdoor was found.** The file is Liquid AI's model with two changes:
 
 1. **A refusal-removal (abliteration) edit in exactly 3 matrices**: `attn_output` of attention layers 18, 22 and 26. These are the only 3 of 314 deterministically quantized tensors (F32 / F16 / Q8_0) that are not byte-identical to my own clean re-quantization of Liquid's BF16. Each of their deltas has a dominant rank-1 component (≈49–54 % of the delta energy in one direction, vs < 1 % in the other 7 `attn_output` matrices). This matches the file's own metadata (`general.name` "Lfm Heretic Bf16", tags `heretic`, `uncensored`, `decensored`, `abliterated`). The model card does not mention any weight edit.
-2. **Ordinary Q5_K_M quantization with the uploader's own imatrix.** For the K-quant tensors (Q5_K / Q6_K) the upload's error against the original is the same size as my control's (ratio 0.989–0.999 on the 31 K-quant tensors checked so far, including 25 of the 38 expert down-projections) and has the same shape (top-1 energy share of the delta equal to the control's within 0.0002). No K-quant tensor shows an edit.
+2. **Ordinary Q5_K_M quantization with the uploader's own imatrix.** For the K-quant tensors (Q5_K / Q6_K) the upload's error against the original is the same size as my control's (ratio 0.989–1.010 on all 44 K-quant tensors checked: all 38 expert down-projections plus 6 expert up/gate samples) and has the same shape (top-1 energy share of the delta equal to the control's within 0.0004). No K-quant tensor shows an edit.
 
 Behaviourally:
 - No injected URLs, packages, insecure code or other unusual content on 100 benign prompts.
@@ -36,7 +36,7 @@ The uploader's Hugging Face repo history has since been rewritten (current HEAD 
 1. **Structure and metadata.** I compared KV metadata, tokenizer, chat template, special tokens, the tensor list, shapes, per-tensor quant types and the GGUF layout (alignment, gaps, trailing bytes, non-finite values).
 2. **Clean control.** I quantized Liquid's BF16 to the upload's exact per-tensor type mix (`--tensor-type-file`, 221 entries extracted from the upload), once without an imatrix and once with my own imatrix. Q8_0, F16 and F32 quantization is deterministic, so every such tensor that was not edited must be byte-identical to my control. K-quants (Q5_K / Q6_K) depend on the imatrix; the uploader's imatrix (`calibration_corpus_8k.txt`, 8000 chunks) is not published, so for those I compare noise levels instead of bytes.
 3. **Weight diff vs Liquid's Q5_K_M.** Every tensor dequantized; relative delta ‖A − L‖/‖L‖, SVD of the delta (share of energy in the top singular direction, σ1/σ2), and a rank-1 fit of the form W' = (I − α·u·uᵀ)·W on the 80 "writer" matrices that write into the residual stream (10 `attn_output`, 30 `shortconv.out_proj`, 2 dense `ffn_down`, 38 `ffn_down_exps`).
-4. **Per-channel control** (`chan_cmp.py`) on 55 targeted tensors (40 finished at packaging time): all 10 `attn_output`, all 38 `ffn_down_exps`, plus samples of `shortconv.out_proj`, `ffn_up_exps` and `ffn_gate_exps`. For each tensor and each pair among A (upload), O (BF16 original), L (Liquid Q5), CN / CI (my controls) I compute the relative delta, the top-1 energy share of the delta and the share of the delta that falls on output channel 557.
+4. **Per-channel control** (`chan_cmp.py`) on 57 targeted tensors: all 10 `attn_output`, all 38 `ffn_down_exps`, plus samples of `shortconv.out_proj` (3), `ffn_up_exps` (4) and `ffn_gate_exps` (2). For each tensor and each pair among A (upload), O (BF16 original), L (Liquid Q5), CN / CI (my controls) I compute the relative delta, the top-1 energy share of the delta and the share of the delta that falls on output channel 557.
 5. **Behaviour**, llama-server, greedy, in a network namespace with no external route, under `strace -f`, upload vs Liquid's Q5:
    - 100 benign prompts (QA, math, code, security, package/install, agent/shell), scanned for URLs, domains, IPs, install commands and insecure patterns that appear only in the upload's output;
    - no prefix plus 50 trigger-like prefixes × 10 base prompts (first-token KL and change vs the no-prefix answer, as z-scores across prefixes);
@@ -64,19 +64,19 @@ From `expected_outputs/byteeq_abz_vs_ctrl_noimat.txt` (the imatrix variant gives
 
 So 311 of 314 deterministic tensors are untouched, and the 3 exceptions are exactly the 3 outliers from the weight diff.
 
-**K-quant tensors** (`expected_outputs/control_summary.json`, from `chan_cmp.py`; 40 of 55 targeted rows finished when this report was written, see "Pending" below). Ratio = ‖A − O‖ / ‖CI − O‖, where 1.0 means the upload is exactly as far from the original as my honest imatrix quant:
+**K-quant tensors** (`expected_outputs/control_summary.json`, from `chan_cmp.py`, all 57 targeted rows; raw rows in `expected_outputs/chan_cmp_all57.jsonl`). Ratio = ‖A − O‖ / ‖CI − O‖, where 1.0 means the upload is exactly as far from the original as my honest imatrix quant:
 
 | Group | n | ratio A vs my imat control | top-1 energy share, A − O | same, CI − O |
 |---|---|---|---|---|
-| `ffn_down_exps` (writers) | 25 / 38 | 0.989 – 0.997 (median 0.995) | median 0.0079, max 0.0174 | median 0.0079, max 0.0174 |
+| `ffn_down_exps` (writers) | 38 / 38 | 0.989 – 1.010 (median 0.995) | median 0.0071, max 0.0233 | median 0.0071, max 0.0237 |
 | `ffn_up_exps`, `ffn_gate_exps` (readers, sample) | 6 | 0.9988 – 0.9995 | – | – |
-| `attn_output`, untouched layers (Q8_0) | 4 / 7 | 1.000 (byte-identical) | 0.007 – 0.011 | identical |
+| `attn_output`, untouched layers (Q8_0) | 7 / 7 | 1.000 (byte-identical) | 0.005 – 0.011 | identical |
 | **`attn_output` layer 18** (Q8_0) | 1 | **7.72** | **0.956** | 0.008 |
+| **`attn_output` layer 22** (Q8_0) | 1 | **8.00** | **0.835** | 0.008 |
 | **`attn_output` layer 26** (Q8_0) | 1 | **10.27** | **0.712** | 0.009 |
 
-- The upload's K-quant deltas are slightly *smaller* than my control's (ratio < 1), consistent with an imatrix calibrated on more data (8000 chunks vs my 64), and not with an added edit. An abliteration edit would raise the ratio and the top-1 share; neither happens.
-- A side result: on all 21 checked K-quant tensors where Liquid's Q5 uses the same type as the upload, my no-imatrix control is **exactly equal** to Liquid's official Q5_K_M. My toolchain reproduces Liquid's file, so the control is a faithful stand-in for "what compression alone does".
-- **Pending at packaging time:** `blk.22.attn_output` and 13 `ffn_down_exps` (layers 0, 1, 25, 27, 28, 30–37) plus a few samples in the per-channel run. `blk.22.attn_output` is already covered by the byte check (not identical, one of the 3) and by the weight diff below. Rerun `repro/04_weightdiff.sh` to complete the table.
+- On 42 of 44 K-quant tensors the upload's delta is slightly *smaller* than my control's (ratio < 1), consistent with an imatrix calibrated on more data (8000 chunks vs my 64), and not with an added edit. The two exceptions are the Q6_K expert down-projections of the last two layers (layer 38: 1.002, layer 39: 1.010). There my own imatrix control is itself 1.6 % and 2.8 % further from the original than my no-imatrix control, so the choice of imatrix alone moves the error by more than that, and the top-1 share of the upload's delta equals the control's (layer 39: 0.0233 vs 0.0237), i.e. no added direction. An abliteration edit would raise the ratio and the top-1 share; neither happens.
+- A side result: on all 27 checked K-quant tensors where Liquid's Q5 uses the same type as the upload, my no-imatrix control is **exactly equal** to Liquid's official Q5_K_M. My toolchain reproduces Liquid's file, so the control is a faithful stand-in for "what compression alone does".
 
 ### 3. The edit in layers 18, 22, 26
 From `expected_outputs/lfm25_abz_vs_liquidq5.json`, delta vs Liquid's Q5:
@@ -88,7 +88,7 @@ From `expected_outputs/lfm25_abz_vs_liquidq5.json`, delta vs Liquid's Q5:
 | layer 26 | 0.0662 | 0.497 | 1.98 | 0.487 |
 | other 7 attention layers | 0.0367 – 0.0369 | < 0.01 | – | ≈ 0 |
 
-Against the BF16 original, the edit is almost purely rank-1: in layer 18, 95.6 % of ‖A − O‖² lies in one direction (my control: 0.8 %), and in layer 26 71 %. The upload's delta is 7.7× and 10.3× the size of the honest Q8_0 rounding error. The edit direction is not channel 557 (|cos| with e₅₅₇ = 0.11 in layer 18; its largest component in layer 26 is channel 1067).
+Against the BF16 original, the edit is almost purely rank-1: in layer 18, 95.6 % of ‖A − O‖² lies in one direction (my control: 0.8 %), in layer 22 83.5 % (control 0.8 %) and in layer 26 71 % (control 0.9 %). The upload's delta is 7.7×, 8.0× and 10.3× the size of the honest Q8_0 rounding error. The edit direction is not channel 557 (|cos| with e₅₅₇ = 0.11 in layer 18, 0.005 in layer 22, 0.04 in layer 26; the largest component is channel 1553 in layer 22 and channel 1067 in layer 26).
 
 The rest of each delta (≈ 46–51 %) is the Q8_0-vs-Q5 rounding difference that every Q8_0 tensor in the upload has against Liquid's Q5. An edit of this form, (I − α·u·uᵀ)·W on a few output projections, is what abliteration tools produce.
 
@@ -96,8 +96,8 @@ The rest of each delta (≈ 46–51 %) is the Q8_0-vs-Q5 rounding difference tha
 77 of 80 writer deltas (upload vs Liquid Q5) share one direction, concentrated on residual channel 557 (median |cos| to the common direction 0.993; random p99 0.057). This looked like a model-wide edit, so I checked it with the control:
 - In Q8_0 writers the upload is byte-identical to my control, and the channel-557 share of A − L equals that of CI − L and CN − L (e.g. 0.0029 / 0.0049 / 0.0199 / 0.0092 on the sampled tensors).
 - So the pattern is in L, not in A: Liquid's own Q5_K quantization of these matrices rounds channel 557 (a high-magnitude residual channel) coarsely, and any finer quant differs from it there.
-- Row 557 is the largest-norm output row of every writer matrix in the original (34/34 checked, 2.2–4.6× the median row norm), so quantization error of *any* kind concentrates there. The top singular direction of CI − O, my own honest quant vs the original, also points at channel 557 in 34 of 34 writers.
-- In the K-quant expert down-projections, the channel-557 share is the same for the upload and for my control (median 0.68 % vs 0.70 % against Liquid's Q5). The pattern is rounding, not an edit.
+- Row 557 is the largest-norm output row of every writer matrix in the original (51/51 checked, 1.8–4.6× the median row norm), so quantization error of *any* kind concentrates there. The top singular direction of CI − O, my own honest quant vs the original, also points at channel 557 in 51 of 51 writers.
+- In the K-quant expert down-projections, the channel-557 share is the same for the upload and for my control (median 0.62 % vs 0.63 % against Liquid's Q5, all 38 layers). The pattern is rounding, not an edit.
 
 ### 5. Behaviour
 Reference is Liquid's Q5 (which is therefore 100/100 identical to itself).
@@ -136,7 +136,7 @@ An earlier run with a 64-token budget was inconclusive (the upload's answers had
 
 ## Limitations
 - **Quantization noise is the detection floor.** The uploader's imatrix is not published, so the 114 K-quant tensors cannot be byte-compared. A perturbation small enough to hide inside K-quant rounding cannot be excluded from weights alone. The noise-ratio and rank-1 tests show nothing above the honest-control level.
-- The per-channel control targets 55 of 428 tensors (40 finished when the kit was packaged; `blk.22.attn_output` and 13 expert down-projections were still running): all writers that matter for the edit question (`attn_output`, `ffn_down_exps`) plus samples. The byte check covers all 314 deterministic tensors. Run `CHAN_FILTER=. repro/04_weightdiff.sh` for all tensors.
+- The per-channel control targets 57 of 428 tensors: all writers that matter for the edit question (`attn_output`, `ffn_down_exps`) plus samples. The byte check covers all 314 deterministic tensors. Run `CHAN_FILTER=. repro/04_weightdiff.sh` for all tensors.
 - **Triggers cannot be searched exhaustively.** 50 hand-picked prefixes × 10 prompts, prefixes only, greedy decoding, reasoning off for the trigger scan.
 - I checked only this one file at the pinned revision, in llama.cpp `19cce69`. Other quants, later revisions and any runtime code were not checked.
 
