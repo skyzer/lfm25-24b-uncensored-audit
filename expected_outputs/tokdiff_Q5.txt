@@ -1,0 +1,12 @@
+chat_template: IDENTICAL 5443
+tokenizer.ggml.add_bos_token DIFF None | False
+tokenizer.ggml.add_eos_token DIFF None | False
+tokenizer.ggml.bos_token_id IDENTICAL 124894
+tokenizer.ggml.clean_spaces DIFF None | False
+tokenizer.ggml.eos_token_id IDENTICAL 124900
+tokenizer.ggml.merges IDENTICAL (len 293320)
+tokenizer.ggml.model IDENTICAL 'gpt2'
+tokenizer.ggml.padding_token_id IDENTICAL 124893
+tokenizer.ggml.pre IDENTICAL 'lfm2'
+tokenizer.ggml.token_type IDENTICAL (len 128000)
+tokenizer.ggml.tokens IDENTICAL (len 128000)

@@ -1,0 +1,6 @@
+55103fda18def5210dafac2d1f1125afc93baf604dc24cf0edf9e9aee0d576ec  LFM2.5-24B-A2B-BF16.gguf (Liquid @0912d33)
+3761486d7ca9f2c63ac2311a34dc16e5471e2bd89b06c80b73bf5d1d9e657d59  LFM2.5-24B-A2B-GSQ-RCO-Q5_K_M.gguf (abenzerps @a35dd08)
+7f3029ea2a8e40175496e5022cf7defdcc587df9703d3ed613e64daa51427ecb  LFM2.5-24B-A2B-Q5_K_M.gguf (Liquid @0912d33)
+ca5a07fb9d777b4fc3ccb36cdd33d29df2926aca3e095909808ad17c426aa276  ctrl_noimat_Q5_K_M.gguf (my control, no imatrix)
+a20894d13c34cbfad40007dc3628b2ab834b693b52ae71e42294638a6efe12c5  ctrl_imat_Q5_K_M.gguf (my control, 64-chunk wikitext imatrix)
+4d16deb779f5916fb3d92d8eed7acc5ade481d35907fa487cd537d8413e831e6  ctrl_imatrix.gguf

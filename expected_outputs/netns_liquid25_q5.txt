@@ -1,0 +1,3 @@
+== netns check 2026-10-28T20:55:10Z
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+000 external net blocked (expected)

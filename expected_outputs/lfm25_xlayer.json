@@ -1,0 +1,621 @@
+{
+ "n_tensors_total": 428,
+ "n_exact_equal": 207,
+ "only_in_cand": [],
+ "only_in_orig": [],
+ "writer": {
+  "s1_over_s2": {
+   "n": 80,
+   "median": 2.8998512114559243,
+   "p90": 3.570180870185665,
+   "max": 6.202548719991899,
+   "min": 1.3278561295678188
+  },
+  "top1_energy": {
+   "n": 80,
+   "median": 0.009145579269358804,
+   "p90": 0.024287382667954452,
+   "max": 0.5414575557530317,
+   "min": 0.0023017037350535475
+  },
+  "rel": {
+   "n": 80,
+   "median": 0.03732177056372166,
+   "p90": 0.043102013319730764,
+   "max": 0.06617110222578049,
+   "min": 0.015792125836014748
+  }
+ },
+ "reader": {
+  "s1_over_s2": {
+   "n": 140,
+   "median": 1.002954738910317,
+   "p90": 1.020499650289512,
+   "max": 1.16905565259473,
+   "min": 1.0000780923757722
+  },
+  "top1_energy": {
+   "n": 140,
+   "median": 0.0008870463085460657,
+   "p90": 0.00534483984519228,
+   "max": 0.012168154423515612,
+   "min": 0.0008015012057842931
+  },
+  "rel": {
+   "n": 140,
+   "median": 0.041112763807177544,
+   "p90": 0.0422104723751545,
+   "max": 0.04420070722699165,
+   "min": 0.018291477113962173
+  }
+ },
+ "writer_by_kind": {
+  "attn_output.weight": {
+   "n": 10,
+   "s1s2": {
+    "n": 10,
+    "median": 1.8820109245153431,
+    "p90": 2.8942693446117387,
+    "max": 6.202548719991899,
+    "min": 1.4574818383631165
+   },
+   "top1": {
+    "n": 10,
+    "median": 0.008821984864128881,
+    "p90": 0.5015192227851099,
+    "max": 0.5414575557530317,
+    "min": 0.005593883807179368
+   }
+  },
+  "ffn_down.weight": {
+   "n": 2,
+   "s1s2": {
+    "n": 2,
+    "median": 1.756957312246913,
+    "p90": 1.9428916243827332,
+    "max": 1.9893752024166882,
+    "min": 1.524539422077138
+   },
+   "top1": {
+    "n": 2,
+    "median": 0.006794177534926553,
+    "p90": 0.010088048239571917,
+    "max": 0.010911515915733257,
+    "min": 0.00267683915411985
+   }
+  },
+  "ffn_down_exps.weight": {
+   "n": 38,
+   "s1s2": {
+    "n": 38,
+    "median": 2.9614995903872794,
+    "p90": 3.8495291878561346,
+    "max": 5.318904809119029,
+    "min": 1.7236906800251475
+   },
+   "top1": {
+    "n": 38,
+    "median": 0.006226813281606921,
+    "p90": 0.012992555004102194,
+    "max": 0.01859635145388883,
+    "min": 0.0023017037350535475
+   }
+  },
+  "shortconv.out_proj.weight": {
+   "n": 30,
+   "s1s2": {
+    "n": 30,
+    "median": 3.03773800492707,
+    "p90": 3.4769431182545443,
+    "max": 4.018980663201146,
+    "min": 1.3278561295678188
+   },
+   "top1": {
+    "n": 30,
+    "median": 0.018885332855002424,
+    "p90": 0.02865631827085033,
+    "max": 0.035186132385811746,
+    "min": 0.003493378216390875
+   }
+  }
+ },
+ "writer_top10_s1s2": [
+  [
+   "blk.18.attn_output.weight",
+   6.2,
+   0.5415
+  ],
+  [
+   "blk.25.ffn_down_exps.weight",
+   5.32,
+   0.0186
+  ],
+  [
+   "blk.21.ffn_down_exps.weight",
+   5.04,
+   0.0163
+  ],
+  [
+   "blk.17.ffn_down_exps.weight",
+   4.8,
+   0.0149
+  ],
+  [
+   "blk.29.ffn_down_exps.weight",
+   4.52,
+   0.0152
+  ],
+  [
+   "blk.16.shortconv.out_proj.weight",
+   4.02,
+   0.031
+  ],
+  [
+   "blk.17.shortconv.out_proj.weight",
+   3.81,
+   0.0352
+  ],
+  [
+   "blk.11.shortconv.out_proj.weight",
+   3.62,
+   0.0261
+  ],
+  [
+   "blk.16.ffn_down_exps.weight",
+   3.56,
+   0.0084
+  ],
+  [
+   "blk.13.ffn_down_exps.weight",
+   3.53,
+   0.0122
+  ]
+ ],
+ "reader_top5_s1s2": [
+  [
+   "blk.26.attn_q.weight",
+   1.17
+  ],
+  [
+   "blk.1.ffn_gate.weight",
+   1.15
+  ],
+  [
+   "blk.0.ffn_gate.weight",
+   1.1
+  ],
+  [
+   "blk.14.attn_k.weight",
+   1.07
+  ],
+  [
+   "blk.34.attn_k.weight",
+   1.06
+  ]
+ ],
+ "xlayer": {
+  "n_dirs": 80,
+  "pairwise_abs_cos": {
+   "median": 0.9818837135563749,
+   "p90": 0.9979258275014098,
+   "max": 0.9993996023311964,
+   "min": 0.00021324435483356446,
+   "frac_over_rand_p99": 0.9512658227848101
+  },
+  "random_p99": 0.056868995104481054,
+  "random_median": 0.01491391848257603,
+  "stack_svd_energy_top1": 0.9419011133760286,
+  "stack_svd_energy_top5": 0.9818154971510601,
+  "cos_to_common_dir": {
+   "median": 0.9927355076761524,
+   "min": 0.005107448896759263,
+   "max": 0.9995819284146465,
+   "n_over_0p5": 77
+  },
+  "per_dir": [
+   [
+    "blk.0.ffn_down.weight",
+    0.975
+   ],
+   [
+    "blk.0.shortconv.out_proj.weight",
+    0.894
+   ],
+   [
+    "blk.1.ffn_down.weight",
+    0.996
+   ],
+   [
+    "blk.1.shortconv.out_proj.weight",
+    0.946
+   ],
+   [
+    "blk.2.attn_output.weight",
+    0.975
+   ],
+   [
+    "blk.2.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.3.ffn_down_exps.weight",
+    0.998
+   ],
+   [
+    "blk.3.shortconv.out_proj.weight",
+    0.99
+   ],
+   [
+    "blk.4.ffn_down_exps.weight",
+    0.998
+   ],
+   [
+    "blk.4.shortconv.out_proj.weight",
+    0.98
+   ],
+   [
+    "blk.5.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.5.shortconv.out_proj.weight",
+    0.988
+   ],
+   [
+    "blk.6.attn_output.weight",
+    0.97
+   ],
+   [
+    "blk.6.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.7.ffn_down_exps.weight",
+    0.998
+   ],
+   [
+    "blk.7.shortconv.out_proj.weight",
+    0.986
+   ],
+   [
+    "blk.8.ffn_down_exps.weight",
+    0.997
+   ],
+   [
+    "blk.8.shortconv.out_proj.weight",
+    0.986
+   ],
+   [
+    "blk.9.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.9.shortconv.out_proj.weight",
+    0.982
+   ],
+   [
+    "blk.10.attn_output.weight",
+    0.959
+   ],
+   [
+    "blk.10.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.11.ffn_down_exps.weight",
+    0.998
+   ],
+   [
+    "blk.11.shortconv.out_proj.weight",
+    0.991
+   ],
+   [
+    "blk.12.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.12.shortconv.out_proj.weight",
+    0.988
+   ],
+   [
+    "blk.13.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.13.shortconv.out_proj.weight",
+    0.992
+   ],
+   [
+    "blk.14.attn_output.weight",
+    0.972
+   ],
+   [
+    "blk.14.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.15.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.15.shortconv.out_proj.weight",
+    0.99
+   ],
+   [
+    "blk.16.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.16.shortconv.out_proj.weight",
+    0.992
+   ],
+   [
+    "blk.17.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.17.shortconv.out_proj.weight",
+    0.993
+   ],
+   [
+    "blk.18.attn_output.weight",
+    0.112
+   ],
+   [
+    "blk.18.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.19.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.19.shortconv.out_proj.weight",
+    0.988
+   ],
+   [
+    "blk.20.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.20.shortconv.out_proj.weight",
+    0.987
+   ],
+   [
+    "blk.21.ffn_down_exps.weight",
+    1.0
+   ],
+   [
+    "blk.21.shortconv.out_proj.weight",
+    0.991
+   ],
+   [
+    "blk.22.attn_output.weight",
+    0.005
+   ],
+   [
+    "blk.22.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.23.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.23.shortconv.out_proj.weight",
+    0.988
+   ],
+   [
+    "blk.24.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.24.shortconv.out_proj.weight",
+    0.989
+   ],
+   [
+    "blk.25.ffn_down_exps.weight",
+    1.0
+   ],
+   [
+    "blk.25.shortconv.out_proj.weight",
+    0.99
+   ],
+   [
+    "blk.26.attn_output.weight",
+    0.039
+   ],
+   [
+    "blk.26.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.27.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.27.shortconv.out_proj.weight",
+    0.989
+   ],
+   [
+    "blk.28.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.28.shortconv.out_proj.weight",
+    0.984
+   ],
+   [
+    "blk.29.ffn_down_exps.weight",
+    1.0
+   ],
+   [
+    "blk.29.shortconv.out_proj.weight",
+    0.989
+   ],
+   [
+    "blk.30.attn_output.weight",
+    0.978
+   ],
+   [
+    "blk.30.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.31.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.31.shortconv.out_proj.weight",
+    0.983
+   ],
+   [
+    "blk.32.ffn_down_exps.weight",
+    0.998
+   ],
+   [
+    "blk.32.shortconv.out_proj.weight",
+    0.981
+   ],
+   [
+    "blk.33.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.33.shortconv.out_proj.weight",
+    0.984
+   ],
+   [
+    "blk.34.attn_output.weight",
+    0.963
+   ],
+   [
+    "blk.34.ffn_down_exps.weight",
+    0.996
+   ],
+   [
+    "blk.35.ffn_down_exps.weight",
+    0.998
+   ],
+   [
+    "blk.35.shortconv.out_proj.weight",
+    0.984
+   ],
+   [
+    "blk.36.ffn_down_exps.weight",
+    0.997
+   ],
+   [
+    "blk.36.shortconv.out_proj.weight",
+    0.977
+   ],
+   [
+    "blk.37.ffn_down_exps.weight",
+    0.997
+   ],
+   [
+    "blk.37.shortconv.out_proj.weight",
+    0.978
+   ],
+   [
+    "blk.38.attn_output.weight",
+    0.956
+   ],
+   [
+    "blk.38.ffn_down_exps.weight",
+    0.996
+   ],
+   [
+    "blk.39.ffn_down_exps.weight",
+    0.999
+   ],
+   [
+    "blk.39.shortconv.out_proj.weight",
+    0.984
+   ]
+  ],
+  "note": "Common direction of 77/80 writer u is ~ basis vector e_557 (single hidden channel, likely an outlier/massive-activation channel): requantization-noise artifact, not a semantic edit direction. Real dense low-rank edits only in blk.18/22/26.attn_output (top1 energy 0.49-0.54, dense u, pairwise |cos| 0.18-0.27 vs random p99 0.057).",
+  "abs_cos_e557": {
+   "blk.0.ffn_down.weight": 0.9741614460945129,
+   "blk.0.shortconv.out_proj.weight": 0.8916161060333252,
+   "blk.1.ffn_down.weight": 0.9956929683685303,
+   "blk.1.shortconv.out_proj.weight": 0.9447144865989685,
+   "blk.2.attn_output.weight": 0.9744656682014465,
+   "blk.2.ffn_down_exps.weight": 0.9986611604690552,
+   "blk.3.ffn_down_exps.weight": 0.9978260397911072,
+   "blk.3.shortconv.out_proj.weight": 0.9894476532936096,
+   "blk.4.ffn_down_exps.weight": 0.9976122379302979,
+   "blk.4.shortconv.out_proj.weight": 0.979487955570221,
+   "blk.5.ffn_down_exps.weight": 0.9994112849235535,
+   "blk.5.shortconv.out_proj.weight": 0.9874852299690247,
+   "blk.6.attn_output.weight": 0.9698280692100525,
+   "blk.6.ffn_down_exps.weight": 0.9989207983016968,
+   "blk.7.ffn_down_exps.weight": 0.9976426959037781,
+   "blk.7.shortconv.out_proj.weight": 0.9855890870094299,
+   "blk.8.ffn_down_exps.weight": 0.9973469376564026,
+   "blk.8.shortconv.out_proj.weight": 0.985569953918457,
+   "blk.9.ffn_down_exps.weight": 0.9992563724517822,
+   "blk.9.shortconv.out_proj.weight": 0.9818155169487,
+   "blk.10.attn_output.weight": 0.9580307006835938,
+   "blk.10.ffn_down_exps.weight": 0.9991405010223389,
+   "blk.11.ffn_down_exps.weight": 0.9984286427497864,
+   "blk.11.shortconv.out_proj.weight": 0.9910908937454224,
+   "blk.12.ffn_down_exps.weight": 0.9987549185752869,
+   "blk.12.shortconv.out_proj.weight": 0.9876173138618469,
+   "blk.13.ffn_down_exps.weight": 0.9995377063751221,
+   "blk.13.shortconv.out_proj.weight": 0.9923219084739685,
+   "blk.14.attn_output.weight": 0.9714888334274292,
+   "blk.14.ffn_down_exps.weight": 0.999321460723877,
+   "blk.15.ffn_down_exps.weight": 0.9990684390068054,
+   "blk.15.shortconv.out_proj.weight": 0.9897249341011047,
+   "blk.16.ffn_down_exps.weight": 0.9993460774421692,
+   "blk.16.shortconv.out_proj.weight": 0.9918751120567322,
+   "blk.17.ffn_down_exps.weight": 0.9996404647827148,
+   "blk.17.shortconv.out_proj.weight": 0.9929978251457214,
+   "blk.18.attn_output.weight": 0.11078833043575287,
+   "blk.18.ffn_down_exps.weight": 0.9993807673454285,
+   "blk.19.ffn_down_exps.weight": 0.9991713166236877,
+   "blk.19.shortconv.out_proj.weight": 0.9881471991539001,
+   "blk.20.ffn_down_exps.weight": 0.999077558517456,
+   "blk.20.shortconv.out_proj.weight": 0.9866293668746948,
+   "blk.21.ffn_down_exps.weight": 0.9996634721755981,
+   "blk.21.shortconv.out_proj.weight": 0.9913444519042969,
+   "blk.22.attn_output.weight": 0.005421242211014032,
+   "blk.22.ffn_down_exps.weight": 0.9989042282104492,
+   "blk.23.ffn_down_exps.weight": 0.9989839792251587,
+   "blk.23.shortconv.out_proj.weight": 0.9882439374923706,
+   "blk.24.ffn_down_exps.weight": 0.9991844892501831,
+   "blk.24.shortconv.out_proj.weight": 0.9890415072441101,
+   "blk.25.ffn_down_exps.weight": 0.9997141361236572,
+   "blk.25.shortconv.out_proj.weight": 0.9895130395889282,
+   "blk.26.attn_output.weight": 0.038446106016635895,
+   "blk.26.ffn_down_exps.weight": 0.9992780089378357,
+   "blk.27.ffn_down_exps.weight": 0.9988579154014587,
+   "blk.27.shortconv.out_proj.weight": 0.9883435368537903,
+   "blk.28.ffn_down_exps.weight": 0.9991406202316284,
+   "blk.28.shortconv.out_proj.weight": 0.9833047986030579,
+   "blk.29.ffn_down_exps.weight": 0.9996625185012817,
+   "blk.29.shortconv.out_proj.weight": 0.9893394112586975,
+   "blk.30.attn_output.weight": 0.9780399799346924,
+   "blk.30.ffn_down_exps.weight": 0.999214231967926,
+   "blk.31.ffn_down_exps.weight": 0.9989849925041199,
+   "blk.31.shortconv.out_proj.weight": 0.9823081493377686,
+   "blk.32.ffn_down_exps.weight": 0.9978926181793213,
+   "blk.32.shortconv.out_proj.weight": 0.9805876016616821,
+   "blk.33.ffn_down_exps.weight": 0.9988083243370056,
+   "blk.33.shortconv.out_proj.weight": 0.9836247563362122,
+   "blk.34.attn_output.weight": 0.9624967575073242,
+   "blk.34.ffn_down_exps.weight": 0.9962347149848938,
+   "blk.35.ffn_down_exps.weight": 0.9983298182487488,
+   "blk.35.shortconv.out_proj.weight": 0.9841014742851257,
+   "blk.36.ffn_down_exps.weight": 0.9973729848861694,
+   "blk.36.shortconv.out_proj.weight": 0.9767418503761292,
+   "blk.37.ffn_down_exps.weight": 0.9970917105674744,
+   "blk.37.shortconv.out_proj.weight": 0.9775944352149963,
+   "blk.38.attn_output.weight": 0.9553442001342773,
+   "blk.38.ffn_down_exps.weight": 0.9963656663894653,
+   "blk.39.ffn_down_exps.weight": 0.9993765950202942,
+   "blk.39.shortconv.out_proj.weight": 0.9836395978927612
+  }
+ }
+}

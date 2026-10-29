@@ -1,0 +1,32 @@
+{
+ "strace_abz_q5.log": {
+  "syscalls": {
+   "socket": 3,
+   "connect": 1,
+   "bind": 2,
+   "listen": 2,
+   "sendto": 1398
+  },
+  "socket_families": {
+   "AF_UNIX": 2,
+   "AF_INET": 1
+  },
+  "external_attempts": 0,
+  "external_examples": []
+ },
+ "strace_liquid25_q5.log": {
+  "syscalls": {
+   "socket": 3,
+   "connect": 1,
+   "bind": 2,
+   "listen": 2,
+   "sendto": 1394
+  },
+  "socket_families": {
+   "AF_UNIX": 2,
+   "AF_INET": 1
+  },
+  "external_attempts": 0,
+  "external_examples": []
+ }
+}

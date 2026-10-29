@@ -1,0 +1,116 @@
+{
+ "LFM2.5-24B-A2B-GSQ-RCO-Q5_K_M.gguf": {
+  "size": 17200808352,
+  "magic": "GGUF",
+  "version": 3,
+  "n_tensors": 428,
+  "n_kv": 49,
+  "alignment": 32,
+  "data_offset": 8251296,
+  "tensors_misaligned": [],
+  "tensor_overlaps": [],
+  "bytes_after_last_tensor": 0,
+  "inter_tensor_gap_total": 0,
+  "max_gap": 0,
+  "nonstandard_kv": [],
+  "suspicious_strings": {
+   "general.base_model.0.repo_url": {
+    "url": [
+     "https://"
+    ]
+   },
+   "tokenizer.chat_template": {
+    "shell": [
+     "nc "
+    ]
+   }
+  },
+  "chat_template_len": 5443,
+  "chat_template_scan": {
+   "shell": [
+    "nc "
+   ]
+  },
+  "vocab": 128000,
+  "types": {
+   "Q8_0": 87,
+   "F32": 207,
+   "F16": 20,
+   "Q6_K": 11,
+   "Q5_K": 103
+  },
+  "nonfinite_small_float_tensors": [],
+  "kv": {
+   "general.architecture": "lfm2moe",
+   "general.type": "model",
+   "general.sampling.top_k": 50,
+   "general.sampling.temp": 0.10000000149011612,
+   "general.sampling.penalty_repeat": 1.0499999523162842,
+   "general.name": "Lfm Heretic Bf16",
+   "general.size_label": "64x1.4B",
+   "general.license": "other",
+   "general.license.name": "lfm1.0",
+   "general.license.link": "LICENSE",
+   "general.base_model.count": 1,
+   "general.base_model.0.name": "LFM2.5 24B A2B",
+   "general.base_model.0.organization": "LiquidAI",
+   "general.base_model.0.repo_url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+   "general.tags": {
+    "array_len": 8,
+    "sha16": "5389413d973e0f07"
+   },
+   "general.languages": {
+    "array_len": 16,
+    "sha16": "e330b1b87dfbf77a"
+   },
+   "lfm2moe.block_count": 40,
+   "lfm2moe.context_length": 131072,
+   "lfm2moe.embedding_length": 2048,
+   "lfm2moe.feed_forward_length": 11776,
+   "lfm2moe.attention.head_count": 32,
+   "lfm2moe.attention.head_count_kv": {
+    "array_len": 40,
+    "sha16": "f230d78810f3c0f4"
+   },
+   "lfm2moe.rope.freq_base": 10000000.0,
+   "lfm2moe.attention.layer_norm_rms_epsilon": 9.999999747378752e-06,
+   "lfm2moe.expert_count": 64,
+   "lfm2moe.expert_used_count": 4,
+   "lfm2moe.expert_feed_forward_length": 1536,
+   "lfm2moe.leading_dense_block_count": 2,
+   "lfm2moe.expert_gating_func": 2,
+   "lfm2moe.vocab_size": 128000,
+   "lfm2moe.shortconv.l_cache": 3,
+   "tokenizer.ggml.model": "gpt2",
+   "tokenizer.ggml.pre": "lfm2",
+   "tokenizer.ggml.tokens": {
+    "array_len": 128000,
+    "sha16": "7fafd2a991522259"
+   },
+   "tokenizer.ggml.token_type": {
+    "array_len": 128000,
+    "sha16": "f8ef9886ad75cfbe"
+   },
+   "tokenizer.ggml.merges": {
+    "array_len": 293320,
+    "sha16": "bdfeb04570b45831"
+   },
+   "tokenizer.ggml.bos_token_id": 124894,
+   "tokenizer.ggml.eos_token_id": 124900,
+   "tokenizer.ggml.padding_token_id": 124893,
+   "tokenizer.ggml.add_bos_token": false,
+   "tokenizer.ggml.add_eos_token": false,
+   "tokenizer.chat_template": {
+    "str_len": 5443,
+    "sha16": "ea663864491de7ad"
+   },
+   "tokenizer.ggml.clean_spaces": false,
+   "general.quantization_version": 2,
+   "general.file_type": 17,
+   "quantize.imatrix.file": "/mnt/local-scratch/LFM2.5-24B-A2B-Uncensored-Heretic.imatrix",
+   "quantize.imatrix.dataset": "/mnt/local-scratch/calibration_corpus_8k.txt",
+   "quantize.imatrix.entries_count": 258,
+   "quantize.imatrix.chunks_count": 8000
+  }
+ }
+}

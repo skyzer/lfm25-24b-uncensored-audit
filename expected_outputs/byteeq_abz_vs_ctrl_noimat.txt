@@ -1,0 +1,10 @@
+('F16', True) 20
+('F32', True) 207
+('Q5_K', False) 103
+('Q6_K', False) 11
+('Q8_0', False) 3
+('Q8_0', True) 84
+deterministic-type tensors that differ: 3
+blk.18.attn_output.weight
+blk.22.attn_output.weight
+blk.26.attn_output.weight

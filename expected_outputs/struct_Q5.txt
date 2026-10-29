@@ -1,0 +1,34 @@
+### KV only in A: []
+### KV only in B: ['general.base_model.0.name', 'general.base_model.0.organization', 'general.base_model.0.repo_url', 'general.base_model.count', 'general.languages', 'general.license', 'general.license.link', 'general.license.name', 'general.tags', 'quantize.imatrix.chunks_count', 'quantize.imatrix.dataset', 'quantize.imatrix.entries_count', 'quantize.imatrix.file', 'tokenizer.ggml.add_bos_token', 'tokenizer.ggml.add_eos_token', 'tokenizer.ggml.clean_spaces']
+same general.architecture
+same general.file_type
+DIFF general.name 'LFM2.5-24B-A2B' | 'Lfm Heretic Bf16' (len 14 16 )
+same general.quantization_version
+same general.sampling.penalty_repeat
+same general.sampling.temp
+same general.sampling.top_k
+same general.size_label
+same general.type
+same lfm2moe.attention.head_count
+same lfm2moe.attention.layer_norm_rms_epsilon
+same lfm2moe.block_count
+same lfm2moe.context_length
+same lfm2moe.embedding_length
+same lfm2moe.expert_count
+same lfm2moe.expert_feed_forward_length
+same lfm2moe.expert_gating_func
+same lfm2moe.expert_used_count
+same lfm2moe.feed_forward_length
+same lfm2moe.leading_dense_block_count
+same lfm2moe.rope.freq_base
+same lfm2moe.shortconv.l_cache
+same lfm2moe.vocab_size
+same tokenizer.chat_template
+same tokenizer.ggml.bos_token_id
+same tokenizer.ggml.eos_token_id
+same tokenizer.ggml.model
+same tokenizer.ggml.padding_token_id
+same tokenizer.ggml.pre
+### tensors only in A []
+### tensors only in B []
+### shape mismatches []

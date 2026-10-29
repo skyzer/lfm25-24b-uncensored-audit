@@ -1,0 +1,6 @@
+# python 3.11+ ; gguf-py is installed from the llama.cpp checkout (step 1)
+numpy>=2.0
+matplotlib
+requests
+huggingface_hub
+pyarrow
